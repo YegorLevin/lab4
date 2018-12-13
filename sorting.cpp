@@ -223,31 +223,36 @@ void TreeSort(int array [], size_t size)
 	*/
 
 
-//void tree_sort_rec(TreeNode* head, Queue* tree_node_queue)
-//{
-//	if (head) { //Пока не встретится пустой узел
-//		tree_sort_rec(head->left, tree_node_queue);  //Рекурсивная функция вывода левого поддерева
-//		tree_node_queue->push_back(head); //Запись элемента в массив
-//		tree_sort_rec(head->right, tree_node_queue); //Рекурсивная функция вывода правого поддерева
-//	}
-//}
-////Сортировка массива с помощью бинарного дерева поиска
-//void Tree_Sort(int* arr, int arr_size) {
-//	TreeClass* Tree = arr_to_tree(arr, arr_size); //Создание дерева
-//	Queue* tree_node_queue = new Queue(); //Создание очереди
-//	tree->tree_sort_rec(Tree->head, tree_node_queue); //Вызов рекурсивной функции сортировки в очередь
-//	//tree_node_queue->pop_front(); //Удаление из очереди первого элемента 
-//	//(корня дерева, который записался дважды, из - за создания очереди и последующего вызова рекурсивной функции с одним и тем же элементом)
-//	for (int i = 0; i < arr_size; i++) //Передача ключей из очереди в массив
-//		arr[i] = tree_node_queue->pop_front()->key;
-//	delete Tree;
-//	delete tree_node_queue;
-//}
-////Функция создания дерева по массиву
-//TreeClass* arr_to_tree(int* arr, int arr_size) {
-//	TreeClass* Tree = new TreeClass;
-//	for (int i = 0; i < arr_size; i++) {
-//		Tree->insert(arr[i]);
-//	}
-//	return Tree;
-//}
+void tree_sort_rec(TreeNode* head, Queue* tree_node_queue)
+{
+	if (head) { //Пока не встретится пустой узел
+		tree_sort_rec(head->left, tree_node_queue);  //Рекурсивная функция вывода левого поддерева
+		tree_node_queue->push_back(head); //Запись элемента в массив
+		tree_sort_rec(head->right, tree_node_queue); //Рекурсивная функция вывода правого поддерева
+	}
+}
+//Сортировка массива с помощью бинарного дерева поиска
+void Tree_Sort(int* arr, int arr_size) {
+	TreeClass* Tree = arr_to_tree(arr, arr_size); //Создание дерева
+	Queue* tree_node_queue = new Queue(); //Создание очереди
+	tree_sort_rec(Tree->head, tree_node_queue); //Вызов рекурсивной функции сортировки в очередь
+	//tree_node_queue->pop_front(); //Удаление из очереди первого элемента 
+	//(корня дерева, который записался дважды, из - за создания очереди и последующего вызова рекурсивной функции с одним и тем же элементом)
+	for (int i = 0; i < arr_size; i++) //Передача ключей из очереди в массив
+	{
+		TreeNode * temp = tree_node_queue->pop_front();
+		arr[i] = temp->get_key();
+	}
+		
+
+	delete Tree;
+	delete tree_node_queue;
+}
+//Функция создания дерева по массиву
+TreeClass* arr_to_tree(int* arr, int arr_size) {
+	TreeClass* Tree = new TreeClass;
+	for (int i = 0; i < arr_size; i++) {
+		Tree->insert(arr[i]);
+	}
+	return Tree;
+}

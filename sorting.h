@@ -16,7 +16,7 @@ void countingSort(char *, size_t); //сортировка подсчётом
 void bogoSort(int *, size_t); //глупая сортировка
 
 //void Tree_Sort(int* arr, int arr_size); // cортировка с помощью двоичного дерева
-//TreeClass* arr_to_tree(int* arr, int arr_size);
+TreeClass* arr_to_tree(int* arr, int arr_size);
 //void tree_sort_rec(TreeNode* head, Queue* tree_node_queue);
 
 
